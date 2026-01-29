@@ -1,0 +1,15 @@
+import { registration,login,logout, userverfication, otpverification,resetotp,resetemail, isAuthenticated } from "./authencontrol.js";
+import express, { Router } from 'express';
+import verification from "./middleware.js";
+import { userData } from "./userController.js";
+const authrouter=express.Router();
+authrouter.post("/register",registration);
+authrouter.post("/login",login);
+authrouter.post("/logout",logout);
+authrouter.post("/mailverify",verification,userverfication);
+authrouter.post("/otpverify",verification,otpverification);
+authrouter.get("/is-auth",verification,isAuthenticated);
+authrouter.post("/resetotp",resetotp);
+authrouter.post("/resetemail",resetemail);
+authrouter.get("/data",verification,userData);
+export default authrouter;
